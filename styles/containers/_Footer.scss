@@ -1,0 +1,86 @@
+@use "../variables/colors";
+@use "../variables/breakpoint";
+
+footer {
+    padding: 73px 0 0 0;
+    background: colors.$footer-green;
+
+    .footer-copyright {
+        color: colors.$green;
+        border-top: 1px solid colors.$green;
+        text-align: center;
+        padding: 25px 0;
+        margin-top: 62px;
+    }
+
+    .footer-content {
+        display: flex;
+
+        @media only screen and (max-width: breakpoint.$sm) {
+            flex-direction: column;
+            justify-content: center;
+        }
+    }
+
+    .footer-column {
+        max-width: 174px;
+        width: 100%;
+
+        h6 {
+            color: colors.$dark-green;
+            margin-bottom: 20px;
+        }
+
+        ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        ul li {
+            margin-top: 20px;
+
+            &:first-child {
+                margin-top: 0;
+            }
+        }
+
+        a {
+            text-decoration: none;
+            color: colors.$dark-green;
+        }
+
+        @media only screen and (max-width: breakpoint.$md) {
+            max-width: 120px;
+        }
+
+        @media only screen and (max-width: breakpoint.$sm) {
+            max-width: unset;
+            text-align: center;
+            margin-top: 40px;
+
+            &:first-child {
+                margin-top: 0;
+            }
+        }
+    }
+
+    .footer-brand {
+        flex: auto;
+
+        @media only screen and (max-width: breakpoint.$sm) {
+            img {
+                display: block;
+                margin: 0 auto;
+            }
+        }
+    }
+
+    .footer-socials {
+        display: flex;
+
+        > a {
+            flex: 1;
+            margin: 0 10px;
+        }
+    }
+}

@@ -1,0 +1,53 @@
+@use "../variables/colors";
+@use "../variables/breakpoint";
+
+.hero-header {
+    background-color: colors.$bg-green;
+    background-image: url("/img/header-bg.png");
+    background-position: top center;
+    background-size: cover;
+    height: 100vh;
+    max-height: 750px;
+    overflow: auto;
+
+    @media only screen and (max-width: breakpoint.$md) {
+        background-image: none;
+        height: auto;
+        max-height: unset;
+        padding-bottom: 90px;
+
+        h1 {
+            font-size: 60px;
+            line-height: 60px;
+        }
+
+        p {
+            max-width: 400px;
+        }
+    }
+
+    @media only screen and (max-width: breakpoint.$sm) {
+        background-image: none;
+        text-align: center;
+
+        p {
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+    }
+}
+
+.hero-content {
+    max-width: 468px;
+
+    p {
+        font-size: 18px;
+        line-height: 30px;
+        margin-bottom: 36px;
+    }
+
+    @media only screen and (max-width: breakpoint.$md) {
+        max-width: unset;
+    }
+}

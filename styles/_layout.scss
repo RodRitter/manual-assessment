@@ -1,0 +1,38 @@
+@use "./variables/breakpoint";
+
+.container {
+    max-width: 1440px;
+    padding: 0 138px;
+    margin: 0 auto;
+
+    @media only screen and (max-width: breakpoint.$md) {
+        padding: 0 80px;
+    }
+
+    @media only screen and (max-width: breakpoint.$sm) {
+        padding: 0 40px;
+    }
+}
+
+.container-inner {
+    max-width: 964px;
+    margin: 0 auto;
+}
+
+// Pages will have a subtle intro animation
+@keyframes pageIntro {
+    from {
+        opacity: 0;
+        margin-top: -10px;
+    }
+    to {
+        opacity: 1;
+        margin-top: 0;
+    }
+}
+
+.page {
+    animation-name: pageIntro;
+    animation-duration: 0.5s;
+    animation-timing-function: ease;
+}

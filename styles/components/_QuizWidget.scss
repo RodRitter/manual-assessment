@@ -1,0 +1,45 @@
+@use "../variables/colors";
+
+.quiz {
+    border: 1px solid colors.$green;
+    border-radius: 10px;
+    padding: 20px;
+    margin: 0 20px;
+}
+
+.question-title {
+    font-size: 18px;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.question-options {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+}
+
+.quiz-option {
+    cursor: pointer;
+
+    button {
+        display: block;
+        margin: 0 auto;
+        width: 100px;
+    }
+}
+
+.quiz-text-option {
+}
+
+.quiz-image-option {
+    position: relative;
+    height: 200px;
+    border: 1px solid colors.$light-green;
+    border-radius: 5px;
+    transition: border-color 0.2s ease;
+
+    &:hover {
+        border-color: colors.$green;
+    }
+}

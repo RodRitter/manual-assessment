@@ -1,0 +1,81 @@
+@use "../variables/colors";
+@use "../variables/breakpoint";
+
+$bg-offset: -90px;
+
+.home-feature {
+    display: flex;
+    padding: 90px 0;
+
+    &:first-child {
+        padding-top: 0;
+    }
+
+    &.align-right {
+        flex-direction: row-reverse;
+
+        .home-feature-background {
+            left: unset;
+            right: $bg-offset;
+        }
+    }
+
+    @media only screen and (max-width: breakpoint.$md) {
+        flex-direction: column !important;
+        padding: 40px 0;
+
+        .home-feature-left {
+            width: 100%;
+
+            img {
+                display: block;
+                margin: 0 auto;
+            }
+        }
+
+        .home-feature-right {
+            text-align: center;
+            padding-top: 20px;
+            max-width: 470px;
+            margin: 0 auto;
+        }
+
+        .home-feature-right .home-feature-background {
+            display: none;
+        }
+    }
+
+    @media only screen and (max-width: breakpoint.$sm) {
+        .home-feature-right {
+            padding: 20px 40px;
+        }
+    }
+}
+
+.home-feature-left {
+    width: fit-content;
+}
+
+.home-feature-right {
+    padding: 0 123px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+
+    .home-feature-background {
+        position: absolute;
+        color: colors.$bg-light-green;
+        font-size: 450px;
+        font-weight: bold;
+        left: $bg-offset;
+        z-index: 1;
+        pointer-events: none;
+    }
+
+    .home-feature-content {
+        position: relative;
+        z-index: 2;
+    }
+}
