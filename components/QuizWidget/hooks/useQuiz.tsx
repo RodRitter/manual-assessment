@@ -9,7 +9,7 @@ export type QuestionType = {
 };
 
 const useQuiz = () => {
-    const [fetching, setFetching] = useState(true);
+    const [fetching, setFetching] = useState(false);
     const [error, setError] = useState<{ error: any }>();
 
     const {
@@ -22,6 +22,7 @@ const useQuiz = () => {
     } = useQuizStore((state) => state);
 
     const getQuestions = async () => {
+        setFetching(true);
         try {
             const response: Response = await fetch("/api/questions");
             const questionData: QuestionType[] = await response.json();
