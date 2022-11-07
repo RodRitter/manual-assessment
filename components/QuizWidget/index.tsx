@@ -86,7 +86,9 @@ const QuizWidget = () => {
 
             {status === "rejected" && <QuizRejection />}
             {status === "successful" && <QuizSuccess />}
-            {fetching && <p className="quiz-message">Preparing quiz...</p>}
+            {status === "ongoing" && fetching && (
+                <p className="quiz-message">Preparing quiz...</p>
+            )}
         </div>
     );
 };
