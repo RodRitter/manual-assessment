@@ -1,4 +1,5 @@
 @use "../variables/colors";
+@use "../variables/breakpoint";
 
 .quiz {
     border: 1px solid colors.$green;
@@ -11,25 +12,84 @@
     font-size: 18px;
     text-align: center;
     margin-bottom: 20px;
+
+    @media only screen and (max-width: breakpoint.$sm) {
+        font-size: 16px;
+        line-height: 22px;
+    }
+}
+
+.quiz-navigation {
+    a {
+        text-decoration: none;
+        font-size: 14px;
+        font-weight: 700;
+        color: colors.$green;
+        text-align: right;
+        display: block;
+    }
 }
 
 .question-options {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 10px;
+
+    @media only screen and (max-width: breakpoint.$sm) {
+        grid-template-columns: 1fr;
+    }
 }
 
 .quiz-option {
     cursor: pointer;
+    position: relative;
 
     button {
         display: block;
         margin: 0 auto;
         width: 100px;
     }
+
+    .selected-icon {
+        opacity: 0;
+        pointer-events: none;
+        font-size: 20px;
+        color: colors.$white;
+        background: colors.$dark-green;
+        width: 20px;
+        height: 20px;
+        line-height: 20px;
+        text-align: center;
+        border-radius: 50%;
+        position: absolute;
+        right: 5px;
+        top: 5px;
+    }
+
+    &.answered .selected-icon {
+        opacity: 1;
+    }
 }
 
 .quiz-text-option {
+    button {
+        background: none;
+        border: 1px solid colors.$light-green;
+        background: colors.$light-green;
+        color: colors.$dark-green;
+        border-radius: 5px;
+        transition: border-color 0.2s ease;
+
+        &:hover {
+            border-color: colors.$green;
+        }
+    }
+
+    .selected-icon {
+        top: 50%;
+        right: 50%;
+        transform: translate(60px, -50%);
+    }
 }
 
 .quiz-image-option {
@@ -42,4 +102,43 @@
     &:hover {
         border-color: colors.$green;
     }
+}
+
+.quiz-progress {
+    display: flex;
+    justify-content: center;
+    margin: 20px 0;
+}
+
+.quiz-progress-pill {
+    background: colors.$white;
+    color: colors.$green;
+    border: 1px solid colors.$green;
+    margin: 0 10px;
+    height: 30px;
+    width: 30px;
+    line-height: 30px;
+    text-align: center;
+    border-radius: 50%;
+    cursor: pointer;
+
+    &.current {
+        background-color: colors.$dark-green;
+        color: colors.$white;
+    }
+
+    &.answered {
+        background-color: colors.$light-green;
+    }
+
+    &.disabled {
+        background-color: colors.$light-gray;
+        color: colors.$gray;
+        border-color: colors.$gray;
+    }
+}
+
+.quiz-message {
+    font-size: 18px;
+    text-align: center;
 }

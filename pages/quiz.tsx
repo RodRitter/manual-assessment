@@ -10,7 +10,7 @@ const Quiz = () => {
             </Head>
             <div className="page">
                 <div className="quiz-wrapper">
-                    <QuizWidget questionEndpoint="/api/questions" />
+                    <QuizWidget />
                 </div>
             </div>
         </>

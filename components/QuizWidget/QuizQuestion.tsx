@@ -4,16 +4,22 @@ import QuizOption, { OptionType } from "./QuizOption";
 export type QuestionProps = {
     question: string;
     options: OptionType[];
+    questionIndex: number;
     active: boolean;
 };
 
-const QuizQuestion = ({ question, options, active }: QuestionProps) => {
+const QuizQuestion = ({
+    question,
+    options,
+    questionIndex,
+    active,
+}: QuestionProps) => {
     if (active) {
         return (
-            <div className="question">
+            <div className="question animated-intro">
                 <h4 className="question-title">{question}</h4>
                 <div className="question-options">
-                    {options.map((option, index) => {
+                    {options.map((option) => {
                         return (
                             <QuizOption key={option.value} option={option} />
                         );

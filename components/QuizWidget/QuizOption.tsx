@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
-import Image from "next/image";
+import Image from "next/legacy/image";
+import useQuiz from "./hooks/useQuiz";
 
 export type OptionType = {
     display: string;
@@ -15,6 +16,17 @@ const QuizOption = ({ option }: OptionProps) => {
     const [displayEl, setDisplayEl] = useState<JSX.Element>();
     const [imageDisplay, setImageDisplay] = useState(false);
 
+    const { answerQuestion, answers, current } = useQuiz();
+
+    const isAnswered = () => {
+        const thisAnswer = answers[current];
+        if (thisAnswer) {
+            return thisAnswer.value === option.value;
+        }
+
+        return false;
+    };
+
     const displayIsImage = () => option.display.indexOf("<img") > -1;
 
     const safeStringToImg = (imgString: string) => {
@@ -26,8 +38,6 @@ const QuizOption = ({ option }: OptionProps) => {
         attrs.forEach((attr) => {
             imgAttr[attr[1]] = attr[2];
         });
-
-        console.log(imgAttr);
 
         return (
             <Image
@@ -56,8 +66,10 @@ const QuizOption = ({ option }: OptionProps) => {
             <div
                 className={`quiz-option ${
                     imageDisplay ? "quiz-image-option" : "quiz-text-option"
-                }`}
+                } ${isAnswered() ? "answered" : ""}`}
+                onClick={() => answerQuestion(current, option)}
             >
+                <div className="selected-icon">✓</div>
                 {displayEl}
             </div>
         );
