@@ -44,7 +44,9 @@ const QuizWidget = () => {
                         const currentClass = current === index && "current";
                         const answeredClass =
                             answers[index] !== undefined && "answered";
-                        const disabledClass = current < index && "disabled";
+                        const disabledClass =
+                            answers[index - 1] !== undefined ||
+                            (current < index && "disabled");
 
                         return (
                             <div
@@ -58,7 +60,8 @@ const QuizWidget = () => {
                                 onClick={() => {
                                     if (
                                         current >= index ||
-                                        answers[index] !== undefined
+                                        answers[index] !== undefined ||
+                                        answers[index - 1] !== undefined
                                     ) {
                                         setCurrent(index);
                                     }
