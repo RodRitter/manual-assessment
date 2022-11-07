@@ -8,12 +8,12 @@ import QuizSuccess from "./QuizSuccess";
 type QuizStatus = "rejected" | "successful" | "ongoing";
 
 const QuizWidget = () => {
-    const { questions, current, answers, reset, setCurrent } = useQuiz();
+    const { questions, fetching, current, answers, reset, setCurrent } =
+        useQuiz();
     const [status, setStatus] = useState<QuizStatus>("ongoing");
 
     useEffect(() => {
         reset();
-
         return () => reset();
     }, []);
 
@@ -86,6 +86,7 @@ const QuizWidget = () => {
 
             {status === "rejected" && <QuizRejection />}
             {status === "successful" && <QuizSuccess />}
+            {fetching && <p className="quiz-message">Preparing quiz...</p>}
         </div>
     );
 };
