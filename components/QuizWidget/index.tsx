@@ -21,7 +21,8 @@ const QuizWidget = () => {
         const vals = Object.values(answers);
 
         // Success/Rejection checks
-        const allAnswered = vals.length === questions.length;
+        const allAnswered =
+            vals.length === questions.length && questions.length > 0;
         const hasRejection = vals.reduce((rejected, answer) => {
             if (rejected || answer.isRejection) return true;
             return answer.isRejection;
